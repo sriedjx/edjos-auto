@@ -9,7 +9,7 @@ jobs:
       - name: Rancher CLI Action
         uses: sriedjx/rancher@master
         with:
-          args: '"version"'
+          args: '"rancher context current"'
           token: ${{ secrets.TOKEN }}
           context: ${{ secrets.CONTEXT }}
           url: ${{ secrets.URL }}
