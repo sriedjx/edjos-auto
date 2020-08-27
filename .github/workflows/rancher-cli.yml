@@ -9,8 +9,7 @@ jobs:
       - name: Rancher CLI Action
         uses: sriedjx/rancher@master
         with:
-          #args: '"rancher context current"'
-     #     token: 4n8xxxpmgr4rkvs5s72s5k6p4qvj8g58mrmxmxlfpfbwtk6dm8q4pd
-     #     context: c-6c6cm:p-djpmf
-    #      url: https://devcontrol.edjx.network
-         # args: '"rancher ps"'
+          token: 4n8xxxpmgr4rkvs5s72s5k6p4qvj8g58mrmxmxlfpfbwtk6dm8q4pd
+          context: c-6c6cm:p-djpmf
+          url: https://devcontrol.edjx.network
+          args: '"get pods"'
