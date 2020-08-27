@@ -2,7 +2,7 @@
 
 token="$TOKEN"
 context="$CONTEXT"
-url="#URL"
+url="URL"
 
 rancher login $URL --token $TOKEN --context $CONTEXT
 rancher kubectl $*
