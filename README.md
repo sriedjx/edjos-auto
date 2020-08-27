@@ -1,8 +1,6 @@
 # Rancher-Action
 Github Action for using the Rancher CLI to manage resources with Rancher during an action.
-Commands will be executed using the following syntax: `rancher kubectl {Supplied-Command}`
-
-## Usage
+Commands will be executed using the following syntax: `rancher {Supplied-Command}`
 
 ### Example Workflow file
 
@@ -17,9 +15,9 @@ jobs:
         uses: colbyhill21/Rancher-Action@1.1
         with: 
           args: '"get pods"'
-          token: ${{ secrets.RANCHER_TOKEN }}
-          context: ${{ secrets.RANCHER_CONTEXT }}
-          url: ${{ secrets.RANCHER_URL }}
+          token: ${{ secrets.TOKEN }}
+          context: ${{ secrets.CONTEXT }}
+          url: ${{ secrets.URL }}
 ```
           
 ## Inputs
