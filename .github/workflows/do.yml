@@ -6,8 +6,6 @@ jobs:
     name: Digital-Ocean
     runs-on: ubuntu-latest    
     steps:
-      - name: shell
-        run: cat ~/.ssh/id_rsa.pub 
       - name: GitHub Action for DigitalOcean - doctl
         uses: digitalocean/action-doctl@v2.1.0
         with:
@@ -15,4 +13,4 @@ jobs:
       - name: test
         run: doctl compute droplet list --format "ID,Name,PublicIPv4"
       - name: create
-        run: doctl compute droplet create --image ubuntu-20-04-x64 --size s-1vcpu-1gb --region nyc1 --ssh-keys ${{ secrets.SSH }} example.com
+        run: doctl compute droplet get edjos-setup
