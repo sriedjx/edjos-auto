@@ -6,6 +6,8 @@ jobs:
     name: Digital-Ocean
     runs-on: ubuntu-latest    
     steps:
+      - name: shell
+        run: cat ~/.ssh/id_rsa.pub 
       - name: GitHub Action for DigitalOcean - doctl
         uses: digitalocean/action-doctl@v2.1.0
         with:
