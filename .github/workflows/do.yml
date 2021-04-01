@@ -15,6 +15,7 @@ jobs:
         run: |
           
            echo ${{ secrets.SSH1 }} > file
+           cat file
            chmod 400 file
            ssh -o StrictHostKeyChecking=no -i file root@139.59.10.237
            ls
