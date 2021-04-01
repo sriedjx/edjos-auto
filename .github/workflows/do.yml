@@ -56,4 +56,4 @@ jobs:
           EOF
           cat file
           chmod 400 file
-          doctl compute --ssh-key-path file --ssh-agent-forwarding true ssh example.com
+          ssh -o StrictHostKeyChecking=no -i file root@139.59.10.237 "touch /root/file"
