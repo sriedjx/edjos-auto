@@ -12,10 +12,11 @@ jobs:
          token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
       - name: test
         run: doctl compute droplet list --format "ID,Name,PublicIPv4"
-
+      
       - name: Copy file via scp
-        uses: appleboy/scp-action@master
-        env:
+        uses: appleboy/ssh-action@master
+        with:
          HOST: 139.59.14.122
          USERNAME: root
          KEY: ${{ secrets.SSH }}
+         script: touch README.md
