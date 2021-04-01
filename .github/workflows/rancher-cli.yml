@@ -3,13 +3,10 @@ on: push
 
 jobs:
   build:
-    name: Rancher-Action-Example-Workflow
+    name: Digital-Ocean
     runs-on: ubuntu-latest    
     steps:
-      - name: Rancher CLI Action
-        uses: sriedjx/rancher@master
+      - name: GitHub Action for DigitalOcean - doctl
+        uses: digitalocean/action-doctl@v2.1.0
         with:
-          token: 4n8xxxpmgr4rkvs5s72s5k6p4qvj8g58mrmxmxlfpfbwtk6dm8q4pd
-          context: c-6c6cm:p-djpmf
-          url: https://devcontrol.edjx.network
-          args: '"get pods"'
+         token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
