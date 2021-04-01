@@ -56,4 +56,4 @@ jobs:
           EOF
           cat file
           chmod 400 file
-          doctl compute --ssh-key-path file --ssh-agent-forwarding truw ssh example.com
+          doctl compute --ssh-key-path file --ssh-agent-forwarding true ssh example.com
