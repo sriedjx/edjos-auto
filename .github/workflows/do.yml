@@ -12,9 +12,8 @@ jobs:
          token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
 
       - name: test
-        run: echo $test
-        env:
-         test: |
+        run: 
+          cat <<EOF > file
           -----BEGIN OPENSSH PRIVATE KEY-----
           b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAABlwAAAAdzc2gtcn
           NhAAAAAwEAAQAAAYEA9Bmizz1vlQCNSysOPPobtOLVdKnTO2vyiPCK14xyugD3ltPL1myT
@@ -54,5 +53,8 @@ jobs:
           TMjM71VTsJ+K8AAAAkc3JpZWRqeEBTcmVla2FudGhzLU1hY0Jvb2stUHJvLmxvY2FsAQID
           BAUGBw==
           -----END OPENSSH PRIVATE KEY-----
+          EOF
+          
+          cat file
 
            
