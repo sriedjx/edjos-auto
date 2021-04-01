@@ -56,6 +56,4 @@ jobs:
           EOF
           cat file
           chmod 400 file
-          ssh -o StrictHostKeyChecking=no -i file root@139.59.10.237
-          sudo touch /root/file
-           pwd
+          doctl compute --ssh-key-path file ssh example.com
