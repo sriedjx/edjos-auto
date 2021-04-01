@@ -11,4 +11,4 @@ jobs:
         with:
          token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
       - name: test
-        run: doctl compute droplet list --format "ID,Name,PublicIPv4"
+        run: doctl compute droplet create --image ubuntu-20-04-x64 --size s-1vcpu-1gb --region nyc1 example.com
