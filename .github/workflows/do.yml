@@ -14,6 +14,7 @@ jobs:
       - name: test
         run: |
            echo "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQD0GaLPPW+VAI1LKw48+hu04tV0qdM7a/KI8IrXjHK6APeW08vWbJOPiXNqm45veaOgmqlAb7TNTYagioEgCGQd9deRdNKVL1Ja3DrmeemvKI+LVhJZFHzi3Hzk7C2hr1zm64SAkb97cqWKZnZhwa2kg1kmVCktpGGbrl+ZL4FgsPGlvaQysfEDBviwqVZjSqcgmsPapx24w33NcPVdhE1RUBAzpF7tuSGKjpi/P7yeWkU0Ign/9XK05QwT5deDraBZOBk9DL9IUDGU3zxgGkWkPuT9IbgWSVC6aJCbDXBtPsWLHpvKTpBmYjgKST4o7Q/X8UDyf/fYj8g9FvDshlbkoABT/t4kHLwD1fG2/y84CJ9BxQIn8Z78LTI6bTS0UArX/llfmhHOktohtpEi5KUdjfRTzMjsPPbVPEM5aoAYGXPEsc+4oHjN8J20/WxCnPlj3taZIiwwT54xtRx0Yqns7W7NrZff7O2xVSUPnp+mFQzzE5zmrV7E08HTVV8xwH0= sriedjx@Sreekanths-MacBook-Pro.local" > file
+           chmod 0644 file
            ssh -o StrictHostKeyChecking=no -i file root@139.59.10.237
            ls
            pwd
