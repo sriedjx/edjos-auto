@@ -55,7 +55,7 @@ jobs:
           -----END OPENSSH PRIVATE KEY-----
           EOF
           chmod 400 file
-          IPaddress=$(doctl compute droplet list mydroplet | awk 'NR==2 {print $3}')
+          IPaddress=$(doctl compute droplet list example.com | awk 'NR==2 {print $3}')
           echo $IPaddress
-          ssh -o StrictHostKeyChecking=no -i file root@139.59.93.192 "touch /root/file"
+          ssh -o StrictHostKeyChecking=no -i file root@$IPaddress
          
