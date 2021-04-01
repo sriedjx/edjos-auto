@@ -13,4 +13,4 @@ jobs:
       - name: test
         run: doctl compute droplet list --format "ID,Name,PublicIPv4"
       - name: create
-        run: doctl compute droplet create --image 80483614 --size s-1vcpu-1gb --region nyc1 --ssh-keys ${{ secrets.SSH }} example.com
+        run: doctl compute droplet create --image 80959838 --size s-2vcpu-4gb --region blr1  example.com
