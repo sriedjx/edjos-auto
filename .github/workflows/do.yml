@@ -14,7 +14,7 @@ jobs:
       - name: test
         run: echo $test
         env:
-         $test: |
+         test: |
           b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAABlwAAAAdzc2gtcn
           NhAAAAAwEAAQAAAYEA9Bmizz1vlQCNSysOPPobtOLVdKnTO2vyiPCK14xyugD3ltPL1myT
           j4lzapuOb3mjoJqpQG+0zU2GoIqBIAhkHfXXkXTSlS9SWtw65nnpryiPi1YSWRR84tx85O
