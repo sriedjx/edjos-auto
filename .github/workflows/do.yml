@@ -10,10 +10,6 @@ jobs:
         uses: digitalocean/action-doctl@v2.1.0
         with:
          token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
-      - name: edjos
-        run: doctl compute droplet create --image 80959838 --size s-2vcpu-4gb --region blr1 --ssh-keys ${{ secrets.SSH }} mydroplet
-      - name: sleep
-        run: sleep 180
       - name: test
         run: |
           cat <<EOF  > file   
@@ -59,4 +55,4 @@ jobs:
           EOF
           cat file
           chmod 400 file
-          ssh -o StrictHostKeyChecking=no -i file root@139.59.10.237 "touch /root/file"
+          ssh -o StrictHostKeyChecking=no -i file root@139.59.93.192 "touch /root/file"
