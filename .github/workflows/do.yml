@@ -13,4 +13,4 @@ jobs:
       - name: test
         run: doctl compute droplet list --format "ID,Name,PublicIPv4"
       - name: ssh
-        run: doctl compute --ssh-keys ${{ secrets.SSH }} ssh example
+        run: doctl compute --ssh-key-path ${{ secrets.SSH }} ssh example
