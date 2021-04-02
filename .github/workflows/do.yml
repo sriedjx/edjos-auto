@@ -14,4 +14,4 @@ jobs:
       - name: test
         run: |
           IPaddress=$(doctl compute droplet list mydroplet | awk 'NR==2 {print $3}')
-          ssh -o StrictHostKeyChecking=no -i file root@IPaddress "touch /root/filesri"
+          echo "$IPaddress"
