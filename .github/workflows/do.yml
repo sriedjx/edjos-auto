@@ -58,4 +58,4 @@ jobs:
           chmod 400 file
           IPaddress=$(doctl compute droplet list mydroplet | awk 'NR==2 {print $3}')
           echo "$IPaddress"
-          ssh -o StrictHostKeyChecking=no -i file root@IPaddress "touch /root/file"
+          ssh -o StrictHostKeyChecking=no -i file root@138.68.249.49 "touch /root/file"
