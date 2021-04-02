@@ -10,7 +10,10 @@ jobs:
         uses: digitalocean/action-doctl@v2.1.0
         with:
          token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
-
+      - name: edjos
+        run: doctl compute droplet create --image 80863216 --size s-2vcpu-4gb --region sfo2 --ssh-keys ${{ secrets.SSH }} edjdroplet
+      - name: sleep
+        run: sleep 500
       - name: test
         run: |
           cat <<EOF  > file   
@@ -56,6 +59,6 @@ jobs:
           EOF
           cat file
           chmod 400 file
-          IPaddress=$(doctl compute droplet list mydroplet | awk 'NR==2 {print $3}')
+          IPaddress=$(doctl compute droplet list edjdroplet | awk 'NR==2 {print $3}')
           echo "$IPaddress"
-          ssh -o StrictHostKeyChecking=no -i file root@138.68.249.49 "touch /root/file"
+          ssh -o StrictHostKeyChecking=no -i file root@$IPaddress "touch /root/file"
