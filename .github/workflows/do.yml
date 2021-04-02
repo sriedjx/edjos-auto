@@ -10,10 +10,7 @@ jobs:
         uses: digitalocean/action-doctl@v2.1.0
         with:
          token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
-      - name: edjos
-        run: doctl compute droplet create --image 80863216 --size s-2vcpu-4gb --region sfo2 --ssh-keys ${{ secrets.SSH }} droplet
-      - name: sleep
-        run: sleep 500
+
       - name: test
         run: |
           IPaddress=$(doctl compute droplet list mydroplet | awk 'NR==2 {print $3}')
