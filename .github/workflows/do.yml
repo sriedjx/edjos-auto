@@ -16,7 +16,7 @@ jobs:
         run: sleep 500
       - name: test
         run: |
-          cat <<EOF  > file   
+          cat <<EOF  > .id_rsa   
           -----BEGIN OPENSSH PRIVATE KEY-----
           b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAABlwAAAAdzc2gtcn
           NhAAAAAwEAAQAAAYEA9Bmizz1vlQCNSysOPPobtOLVdKnTO2vyiPCK14xyugD3ltPL1myT
@@ -57,8 +57,7 @@ jobs:
           BAUGBw==
           -----END OPENSSH PRIVATE KEY-----
           EOF
-          cat file
-          chmod 400 file
+          chmod 400 .id_rsa
           IPaddress=$(doctl compute droplet list edjdroplet | awk 'NR==2 {print $3}')
           echo "$IPaddress"
-          ssh -o StrictHostKeyChecking=no -i file root@$IPaddress "touch /root/file"
+          ssh -o StrictHostKeyChecking=no -i .id_rsa root@$IPaddress "touch /root/file"
