@@ -6,10 +6,14 @@ jobs:
     name: Digital-Ocean
     runs-on: ubuntu-latest    
     steps:
-      - name: GitHub Action for DigitalOen - doctl
+      - name: GitHub Action for DigitalOcean - doctl
         uses: digitalocean/action-doctl@v2.1.0
         with:
          token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
+      - name: edjos
+        run: doctl compute droplet create --image 80863216 --size s-2vcpu-4gb --region sfo2 --ssh-keys ${{ secrets.SSH }} edjdroplet
+      - name: sleep
+        run: sleep 500
       - name: test
         run: |
           cat <<EOF  > .id_rsa   
@@ -56,4 +60,4 @@ jobs:
           chmod 400 .id_rsa
           IPaddress=$(doctl compute droplet list edjdroplet | awk 'NR==2 {print $3}')
           echo "$IPaddress"
-          ssh -o StrictHostKeyChecking=no -i .id_rsa root@$IPaddress "sh /var/db/portsnap/test"
+          ssh -o StrictHostKeyChecking=no -i .id_rsa root@$IPaddress "touch /root/file"
