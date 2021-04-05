@@ -6,7 +6,7 @@ jobs:
     name: Digital-Ocean
     runs-on: ubuntu-latest    
     steps:
-      - name: GitHub Action for DigitalOean - doctl
+      - name: GitHub Action for DigitalOen - doctl
         uses: digitalocean/action-doctl@v2.1.0
         with:
          token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
