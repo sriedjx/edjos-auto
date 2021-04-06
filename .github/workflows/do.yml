@@ -12,7 +12,6 @@ jobs:
          token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
       - name: test
         run: |
-          mkdir /tmp
           ls /tmp
           ssh-keygen -b 2048 -t rsa -f /tmp/sshkey -q
           chmod 400 /tmp/sshkey
