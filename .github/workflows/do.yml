@@ -12,10 +12,10 @@ jobs:
          token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
       - name: test
         run: |
-          cat <<EOF  > .id_rsa.pub   
-          ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCqkrmWHCexSo+4cjcpWS3e9n8JF5f5CdkcRvg9vFN8iTsdYlAKlYWWnZ7ggXrITMnIbiQjehfrK0/l3R3v8532uN4hX1BvQueNROGI9KeE6s+X6U+hFburGrLGjfXYgvqIXU5AZd4LjcJq5XZ9niC7DliYEEdLiq8n664BKNgyHVYCgR1N/kyeEigmwos581HNVn5biNjLqgXOtKYr8BDdl8cog9EGhHBOwqQ0nO8G+/gM6yynqjxcOqYgEKkmqRnJXSr2cJqEO9E3EP+aRRUmCtDBEWmGwUI8sLl9sD/1ivQ8KbN8UJvJHXdz3H+ZnUaVq06SaDcBxvxKTCmvydA9 root@build-final
-          EOF
-          chmod 655 .id_rsa.pub
+          mkdir /tmp
+          ls /tmp
+          ssh-keygen -b 2048 -t rsa -f /tmp/sshkey -q
+          chmod 400 /tmp/sshkey
           IPaddress=$(doctl compute droplet list mydroplet | awk 'NR==2 {print $3}')
           echo "$IPaddress"
-          ssh -o StrictHostKeyChecking=no -i .id_rsa root@$IPaddress "sh /root/script"
+          ssh -o StrictHostKeyChecking=no -i /tmp/sshkey root@$IPaddress "sh /root/script"
