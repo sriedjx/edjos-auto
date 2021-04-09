@@ -55,13 +55,16 @@ jobs:
           -----END OPENSSH PRIVATE KEY-----
           EOF
           chmod 400 .id_rsa
-          IPaddress=$(doctl compute droplet list mydroplet | awk 'NR==2 {print $3}')
-          echo "$IPaddress"      
+     
       - name: script1
         run: |
+          IPaddress=$(doctl compute droplet list mydroplet | awk 'NR==2 {print $3}')
+          echo "$IPaddress" 
           ssh -o StrictHostKeyChecking=no -i .id_rsa root@$IPaddress "sh /root/script1"  
       - name: sleep
         run: sleep 500
       - name: script2
         run: |
+          IPaddress=$(doctl compute droplet list mydroplet | awk 'NR==2 {print $3}')
+          echo "$IPaddress" 
           ssh -o StrictHostKeyChecking=no -i .id_rsa root@$IPaddress "sh /root/script2"  
