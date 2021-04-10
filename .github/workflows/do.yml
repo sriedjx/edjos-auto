@@ -10,8 +10,11 @@ jobs:
         uses: digitalocean/action-doctl@v2.1.0
         with:
          token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
-
-      - name: edjbuild
+      - name: edjos
+        run: doctl compute droplet create --image 80863216 --size s-2vcpu-4gb --region sfo2 --ssh-keys ${{ secrets.SSH }} mydroplet
+      - name: sleep
+        run: sleep 420
+      - name: test
         run: |
           cat <<EOF  > .id_rsa   
           -----BEGIN OPENSSH PRIVATE KEY-----
@@ -55,16 +58,7 @@ jobs:
           -----END OPENSSH PRIVATE KEY-----
           EOF
           chmod 400 .id_rsa
-     
-      - name: script1
-        run: |
           IPaddress=$(doctl compute droplet list mydroplet | awk 'NR==2 {print $3}')
-          echo "$IPaddress" 
-          ssh -o StrictHostKeyChecking=no -i .id_rsa root@$IPaddress "sh /root/script1"  
-      - name: sleep
-        run: sleep 500
-      - name: script2
-        run: |
-          IPaddress=$(doctl compute droplet list mydroplet | awk 'NR==2 {print $3}')
-          echo "$IPaddress" 
-          ssh -o StrictHostKeyChecking=no -i .id_rsa root@$IPaddress "sh /root/script2"  
+          echo "$IPaddress"
+          ssh -o StrictHostKeyChecking=no -i .id_rsa root@$IPaddress "touch /root/script1 && chmod +x /root/script1"
+          ssh -o StrictHostKeyChecking=no -i .id_rsa root@$IPaddress "touch /root/script2 && chmod +x /root/script2"
