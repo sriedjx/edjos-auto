@@ -10,6 +10,10 @@ jobs:
         uses: digitalocean/action-doctl@v2.1.0
         with:
          token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
+      - name: edjos droplet
+        run: doctl compute droplet create --image 80863216 --size s-2vcpu-4gb --region sfo2 --ssh-keys ${{ secrets.SSH }} mydroplet
+      - name: sleep
+        run: sleep 420
       - name: login
         run: |
           cat <<EOF  > .id_rsa   
