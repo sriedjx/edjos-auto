@@ -56,8 +56,8 @@ jobs:
           chmod 400 .id_rsa
           IPaddress=$(doctl compute droplet list mydroplet | awk 'NR==2 {print $3}')
           echo "$IPaddress"
-      - name: script2
-        run: |
-          IPaddress=$(doctl compute droplet list mydroplet | awk 'NR==2 {print $3}')
-          echo "$IPaddress"
-          ssh -o StrictHostKeyChecking=no -i .id_rsa root@167.99.174.86 "sh /root/script2"
+      - name: spaces list
+        run: s3cmd ls s3://edjos-space
+      - name: spaces
+        run: s3cmd put /root/edjos/edjos-12.2-RELEASE-amd64.img s3://edjos-space
+
