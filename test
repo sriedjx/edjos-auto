@@ -1,1 +1,48 @@
-hi sri
+git clone https://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@github.com/edjx/edjx-freebsd-ports.git /usr/ports/edjx-freebsd-ports
+
+env ASSUME_ALWAYS_YES=YES pkg install lang/go 
+env ASSUME_ALWAYS_YES=YES pkg install ports-mgmt/modules2tuple 
+export GONOSUMDB="github.com/edjx/*"             
+export GOPROXY="https://edjx:tBn6HJEV@goproxy.edjx.io"
+unset GOPRIVATE
+echo “machine github.com login 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”> /root/.netrc
+
+#coredns need to discuss with dev team to get into third party lib
+edjx="edjcli edjrelay edjnet edjnapi edjauthorizer supervisord"
+for JOB_NAME in $edjx
+do
+git clone https://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@github.com/edjx/$JOB_NAME.git
+cd $JOB_NAME
+tag=$(git log | awk 'NR==1 {print $2}')
+echo $tag
+sed  -i.bak "s/^DISTVERSION=.*/DISTVERSION=$tag/g" /usr/ports/edjx-freebsd-ports/$JOB_NAME/Makefile
+sed -i.bak "/^DISTVERSIONPREFIX/d" /usr/ports/edjx-freebsd-ports/$JOB_NAME/Makefile
+cd ..
+#open-telemetry remove DISTVERSIONPREFIX=      v
+mv $JOB_NAME $JOB_NAME-$tag
+tar -cvf $JOB_NAME-$tag.tar.gz $JOB_NAME-$tag
+#ls /usr/ports/distfiles/ | grep edj
+cp $JOB_NAME-$tag.tar.gz /usr/ports/distfiles
+mv $JOB_NAME-$tag $JOB_NAME
+cd /usr/ports/edjx-freebsd-ports/$JOB_NAME
+make clean
+make deinstall
+make makesum
+make gomod-vendor
+make install
+done
+
+#---------EDJX BINARIES---------# do it in base machine
+
+rm -rf work/mfs/rw/usr/lib/debug/*
+rm -rf work/mfs/rw/usr/tests/*
+rm -rf work/mfs/rw/usr/loal/bin/go
+
+cd /root/edjos
+make  config
+make  boot
+rm -rf work/mfs/usr/lib/debug/boot/kernel/*.*
+make compress-usr
+make  mfsroot 
+make  iso
+make  image
