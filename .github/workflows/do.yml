@@ -56,4 +56,4 @@ jobs:
           chmod 400 .id_rsa
           IPaddress=$(doctl compute droplet list mydroplet | awk 'NR==2 {print $3}')
           echo "$IPaddress"
-          ssh -o StrictHostKeyChecking=no -i .id_rsa root@104.236.204.5 "sh /root/script2"
+          ssh -o StrictHostKeyChecking=no -i .id_rsa root@104.236.203.159 "sh /root/script1"
